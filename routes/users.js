@@ -4,8 +4,8 @@ var router = express.Router();
 const {
   signupUserController,
   loginUserController,
-} = require("../controllers/authanticationController");
-const ProtectionMiddleware = require("../middlewares/ProtectionMiddleware");
+} = require("../controllers/UsersAuthanticationController");
+const UserProtectionMiddleware = require("../middlewares/UserProtectionMiddleware");
 
 const {
   getAllUsers,
@@ -13,7 +13,7 @@ const {
 } = require("../controllers/userControllers");
 
 /* GET users listing. */
-router.get("/users", ProtectionMiddleware, getAllUsers);
+router.get("/users", getAllUsers);
 router.post("/login", loginUserController);
 router.post("/signup", signupUserController);
 router.delete("/deleteUser/:id", deleteUserById);

@@ -4,7 +4,6 @@ const userSchema = new mongoose.Schema(
     username: {
       type: String,
       required: true,
-      trim: true,
     },
     email: {
       type: String,
@@ -18,11 +17,25 @@ const userSchema = new mongoose.Schema(
       type: Number,
       required: false,
     },
-    // isAdmin: {
-    //   type: Boolean,
-    //   default: false,
+    isAdmin: {
+      type: Boolean,
+      default: false,
+      required: false,
+    },
+    watchLaterList: {
+      type: [mongoose.Schema.Types.ObjectId],
+      ref: "Movie",
+      default: [],
+      required: false,
+    },
+    comments: {
+      type: [
+        { movieId: mongoose.Schema.Types.ObjectId },
+        { text: String, createdAt: Date },
+      ],
+      ref: "Movie",
+    },
   },
-
   {
     timestamps: true,
   }

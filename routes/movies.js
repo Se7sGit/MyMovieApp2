@@ -7,14 +7,14 @@ const {
   deleteMovieById,
   addMovie,
 } = require("../controllers/movies.Controllers");
-const ProtectionMiddleware = require("../middlewares/ProtectionMiddleware");
+const UserProtectionMiddleware = require("../middlewares/UserProtectionMiddleware");
 var router = express.Router();
 
 router.get("/allMovies", getAllMovies);
 router.get("/Movie/:title", getMovieByTitle);
 router.get("/Movie/:id", getMovieById);
-router.post("/addMovie", ProtectionMiddleware, addMovie);
-router.patch("/updateMovie/:id", ProtectionMiddleware, updateMovieById);
-router.delete("/deleteMovie/:id", ProtectionMiddleware, deleteMovieById);
+router.post("/addMovie", UserProtectionMiddleware, addMovie);
+router.patch("/updateMovie/:id", UserProtectionMiddleware, updateMovieById);
+router.delete("/deleteMovie/:id", UserProtectionMiddleware, deleteMovieById);
 
 module.exports = router;
